@@ -8,17 +8,15 @@ if (($gestor = fopen($input, "r")) !== FALSE) {
     }
     fclose($gestor);
 }
-print_r($array_dato);
 
 $output = $argv[2];
-$file = fopen($output,"w+");
-if($file == false){
-  die("No se ha podido crear el archivo.");
+$newfile=fopen($output.'.txt','w');//abrir archivo, nombre archivo, modo apertura
+for ($i=1; $i < count($array_dato); $i++) { 
+    fwrite($newfile, // escribir
+      $array_dato[$i][0]." ".$array_dato[$i][1]." live in " . $array_dato[$i][3] . "\r\n");
 }
-$newfile=fopen($file.'.txt','w');//abrir archivo, nombre archivo, modo apertura
-fwrite($newfile, // escribir
-      $array_dato[1][0]." ".$array_dato[1][1]." live in " . $array_dato[1][3]);
-echo "Tu archivo se ha guardado con el nombre: " .       $file;
-fclose($file); 
+
+echo "Tu archivo se ha guardado con el nombre: " . $output;
+fclose($newfile); 
 
 ?>
