@@ -1,19 +1,14 @@
 <?php
 $input = $argv[1] ;
+$array_dato = [];
 if (($gestor = fopen($input, "r")) !== FALSE) {
     while (($datos = fgetcsv($gestor, 1000, ",")) !== FALSE) {
-        $numero = count($datos);
-        for ($c = 0; $c < $numero; $c++) {
-            if ($datos[$c] <> "") {
-                echo $datos[$c] . " ";
-                
-            } else {
-                echo "\n";
-            }
-        }
-        echo "\n";
+        array_push($array_dato, $datos);
+
     }
     fclose($gestor);
 }
+
+print_r($array_dato)
 
 ?>
